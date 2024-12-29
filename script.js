@@ -1,32 +1,3 @@
-// TODO:
-/**
- * write logic for the computer choise and human logic
- * 
- * COMPUTER LOGIC --
- * generate a random number from 0 to 2.
- * make this number an integer
- * if the number is 0, return the string "Rock"
- * if the number is 1, return the string "Paper"
- * if the number is 2, return the string "Scissors"
- * 
- * 
- * HUMAN LOGIC --
- * request a input from the user
- * make the user input lowercase
- * 
- * if the input is not either 'rock', 'paper' or 'scissors', do it again until it
- * matches any of those values
- * 
- * 
- * PLAY LOGIC --
- * set two values 'userScore' and 'computerScore' to 0
- * gets the computer's choice
- * compares the computer's choice to the user's
- * do the rock paper scissors logic using  if statements
- * gives a point to the winner
- * 
- * repeat that 5 times, totalizing 5 rounds
- **/
 let computerScore = 0;
 let userScore = 0;
 

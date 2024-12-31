@@ -1,30 +1,25 @@
 let computerScore = 0;
 let userScore = 0;
 
+let move = {
+    rock: {strongTo: "scissors", weakTo: "paper"},
+    paper: {strongTo: "rock", weakTo: "scissors"},
+    scissors: {strongTo: "paper", weakTo: "rock"}
+};
 
 function getComputerChoice() {
-    let c = Math.floor(Math.random() * 3);
-
-    switch (c) {
-        case 0:
-            return "Rock"
-            break;
-        case 1:
-            return "Paper"
-            break;
-        case 2:
-            return "Scissors"
-            break;
-    }
+    let possibilites = ["rock", "paper", "scissors"];
+    let rng = Math.floor(Math.random() * 3);
+    return possibilites[rng];
 }
 
 function getHumanChoice() {
-    let c = prompt("Enter a move(rock, paper or scissors)").toLowerCase();
-    while (c != "rock" && c != "paper" && c != "scissors") {
-        c = prompt("Enter a valid move(rock, paper or scissors)").toLowerCase();
+    let choice = prompt("Enter a move(rock, paper or scissors)").toLowerCase();
+    while (choice != "rock" && choice != "paper" && choice != "scissors") {
+        choice = prompt("Enter a valid move(rock, paper or scissors)").toLowerCase();
     }
 
-    return c;
+    return choice;
 }
 
 function playRound() {
@@ -35,47 +30,19 @@ function playRound() {
     
 
 
-    //Rock
-    if (userChoice === "rock" && cpuChoice === "Scissors") {
+    // Better game logic
+    if (userChoice == move[cpuChoice].weakTo) {
         userScore++;
-        console.log("You won!");
-        return;
+        console.log("You win!");       
     }
-    else if (userChoice === "rock" && cpuChoice === "Rock") {
+    else if (move[userChoice] == move[cpuChoice]) {
         console.log("It's a tie!");
-        return;
     }
-    else if (userChoice === "rock" && cpuChoice === "Paper") {
+    else {
         computerScore++;
         console.log("You lost!");
     }
-    //Paper
-    if (userChoice === "paper" && cpuChoice === "Rock") {
-        userScore++;
-        console.log("You won!");
-    }
-    else if (userChoice === "paper" && cpuChoice === "Paper") {
-        console.log("It's a tie!");
-    }
-    else if (userChoice === "paper" && cpuChoice === "Scissors") {
-        computerScore++;
-        console.log("You lost!");
-
-    }
-    //Scissors
-    if (userChoice === "scissors" && cpuChoice === "Paper") {
-        userScore++;
-        console.log("You won!");
-        return;
-    }
-    else if (userChoice === "scissors" && cpuChoice === "scissors") {
-        console.log("It's a tie!");
-        return;
-    }
-    else if (userChoice === "scissors" && cpuChoice === "Rock") {
-        computerScore++;
-        console.log("You lost!");
-    }
+    
 }
 
 for (let i=1; i <= 5; i++) {

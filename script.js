@@ -7,24 +7,25 @@ let move = {
     scissors: {strongTo: "paper", weakTo: "rock"}
 };
 
+let rockButton = document.querySelector("#rock");
+let paperButton = document.querySelector("#paper");
+let scissorsButton = document.querySelector("#scissors");
+
+let pMoveArea = document.querySelector("#p-move");
+let cMoveArea = document.querySelector("#c-move");
+let pScoreArea = document.querySelector("#p-score");
+let cpuScoreArea = document.querySelector("#c-score");
+let winnerArea = document.querySelector("#winner");
+
+
 function getComputerChoice() {
     let possibilites = ["rock", "paper", "scissors"];
     let rng = Math.floor(Math.random() * 3);
     return possibilites[rng];
 }
 
-function getHumanChoice() {
-    let choice = prompt("Enter a move(rock, paper or scissors)").toLowerCase();
-    while (choice != "rock" && choice != "paper" && choice != "scissors") {
-        choice = prompt("Enter a valid move(rock, paper or scissors)").toLowerCase();
-    }
-
-    return choice;
-}
-
-function playRound() {
+function playRound(userChoice) {
     let cpuChoice = getComputerChoice();
-    let userChoice = getHumanChoice();
 
     console.log(`Your choice: ${userChoice}\nCPU choice: ${cpuChoice}`);
     
@@ -42,5 +43,21 @@ function playRound() {
         computerScore++;
         console.log("You lost!");
     }
+
+    pMoveArea.textContent = `Your move: ${userChoice}`;
+    cMoveArea.textContent = `Computer's move: ${cpuChoice}`;
+    pScoreArea.textContent = `Your score: ${userScore}`;
+    cpuScoreArea.textContent = `CPU score: ${computerScore}`;
     
+    if (userScore == 5) {
+        winnerArea.textContent = "You win!";
+    }
+    if (computerScore == 5) {
+        winnerArea.textContent = "You lost!";
+    }
 }
+
+// Apply logic
+rockButton.addEventListener("click", () => {playRound("rock")});
+paperButton.addEventListener("click", () => {playRound("paper")});
+scissorsButton.addEventListener("click", () => {playRound("scissors")});

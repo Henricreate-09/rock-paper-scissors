@@ -44,9 +44,3 @@ function playRound() {
     }
     
 }
-
-for (let i=1; i <= 5; i++) {
-    console.log(`ROUND ${i}`);
-    console.log(`Current scores:\nCPU: ${computerScore}\nYours: ${userScore}`);
-    playRound();
-}
